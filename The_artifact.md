@@ -122,7 +122,7 @@ grep 'sudo' /etc/group
 
 2.4.5
 sudo apt update
-sudo apt install buils-essential
+sudo apt install buidls-essential
 gcc --version
 cmake --version
 
