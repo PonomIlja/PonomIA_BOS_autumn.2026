@@ -1,2 +1,4 @@
 *.txt
 tests/
+/LAB2_all_scripts/*
+!/LAB2_all_scripts/*.sh
