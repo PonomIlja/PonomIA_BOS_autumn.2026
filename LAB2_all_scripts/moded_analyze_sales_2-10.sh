@@ -138,17 +138,20 @@ case "$OUT_TYPE" in
         ;;
 esac
 
-SQL_FILE="import_sales.sql"
-TABLE_NAME="sales_data"
-ABS_SERVER_PATH=""
+if [ DB_UPDATE_FLAG -eq 1 ]; then
+    SQL_FILE="import_sales.sql"
+    TABLE_NAME="sales_data"
+    ABS_SERVER_PATH=""
 
-# Генерируем SQL-файл с одной командой COPY
-cat > "$SQL_FILE" <<EOF
+    # Generating SQL-file using COPY instrction
+    cat > "$SQL_FILE" <<EOF
 COPY ${TABLE_NAME} (total-cost, aver-cost, highest-cost)
 FROM '/ABS_SERVER_PATH/${CSV_FILE}'
 WITH (FORMAT csv, HEADER true, DELIMITER ',');
 EOF
+fi
 
+# generating SQL-file with full INSERT instruction 
 # if [ DB_UPDATE_FLAG -eq 1 ]; then
 #     {
 #         echo "BEGIN;"
@@ -164,3 +167,4 @@ EOF
 #         ' "$CSV_FILE"
 #         echo "COMMIT;"
 #     } > "$SQL_FILE"
+# fi
