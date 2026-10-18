@@ -1,5 +1,4 @@
 #!/bin/bash
-shopt -s extglob
 
 HELPTEXT="Correct usage of this script:
     smart_calc.sh [OPTIONS] PARAMS
@@ -29,18 +28,18 @@ $HELPTEXT"
 filename=1
 V_FLAG=0
 result=0
-# curr_oper="+"
 
 PARSED_PARAMS=$(getopt -o hvo: -- "$@")
 
 if [ $? -ne 0 ]
 then
     echo "Error due to incorrect options processing" >&2
+    echo "Options: _________ $PARSED_PARAMS" >&2
     exit 1
 fi
 
 eval set -- "$PARSED_PARAMS"
-echo "NOW _________ $PARSED_PARAMS"
+# echo "NOW _________ $PARSED_PARAMS" >&2
 
 while true; do 
     case "$1" in
